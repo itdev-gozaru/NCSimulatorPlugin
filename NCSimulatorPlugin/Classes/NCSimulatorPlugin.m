@@ -99,7 +99,7 @@ static NCSimulatorPlugin *sharedPlugin;
     [newMenuItem setSubmenu:simulator];
     [mainMenu addItem:newMenuItem];
 
-    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"Initialize" action:@selector(userStart) keyEquivalent:@""];
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"Initialize" action:@selector(initialize) keyEquivalent:@""];
     [item setTarget:self];
     [simulator addItem:item];
 
@@ -121,7 +121,7 @@ static NCSimulatorPlugin *sharedPlugin;
     [simulator addItem:versionItem];
 }
 
-- (void)userStart
+- (void)initialize
 {
     NSLog(@"Start NCSimulatorPlugin");
      __weak typeof(self)weakSelf = self;
