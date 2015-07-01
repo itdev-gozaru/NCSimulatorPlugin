@@ -81,6 +81,7 @@ static NCSimulatorPlugin *sharedPlugin;
 
     if (![self hasMenu]) {
         [self createMenu];
+        [self initialize];
     }
 
     [[NSNotificationCenter defaultCenter] addObserver: self
@@ -98,12 +99,6 @@ static NCSimulatorPlugin *sharedPlugin;
     NSMenuItem *newMenuItem = [[NSMenuItem alloc] initWithTitle:@"Simulator" action:NULL keyEquivalent:@""];
     [newMenuItem setSubmenu:simulator];
     [mainMenu addItem:newMenuItem];
-
-    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"Initialize" action:@selector(initialize) keyEquivalent:@""];
-    [item setTarget:self];
-    [simulator addItem:item];
-
-
 
     NSMenuItem *separatorItem = [NSMenuItem separatorItem];
     [simulator addItem:separatorItem];
