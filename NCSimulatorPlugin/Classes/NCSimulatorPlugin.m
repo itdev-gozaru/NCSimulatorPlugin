@@ -25,6 +25,7 @@ static NCSimulatorPlugin *sharedPlugin;
     NSOperationQueue *queueVersion;
     
     NSMenuItem * versionItem;
+    NSMenuItem * checkUpdateItem;
     BOOL initialized;
     NSString *currentVersion;
     NSString * currentAppVersionString;
@@ -80,7 +81,6 @@ static NCSimulatorPlugin *sharedPlugin;
 
     if (![self hasMenu]) {
         [self createMenu];
-        [self chackUpdate];
     }
 
     [[NSNotificationCenter defaultCenter] addObserver: self
@@ -108,6 +108,9 @@ static NCSimulatorPlugin *sharedPlugin;
     NSMenuItem *separatorItem = [NSMenuItem separatorItem];
     [simulator addItem:separatorItem];
 
+    checkUpdateItem = [[NSMenuItem alloc] initWithTitle:@"Check for updates..." action:@selector(chackUpdate) keyEquivalent:@""];
+    [checkUpdateItem setTarget:self];
+    [simulator addItem:checkUpdateItem];
 
     NSDictionary *currentD = [_bundle infoDictionary];
     currentVersion = [currentD valueForKey:@"CFBundleVersion"];
@@ -326,12 +329,9 @@ static NCSimulatorPlugin *sharedPlugin;
              dispatch_async(dispatch_get_main_queue(), ^{
                  [refreshItem setTitle:@"Refresh"];
                  [weakSelf setMenuItems:userInfo];
-                 [weakSelf chackUpdate];
              });
          }];
     }];
-    
-    [self chackUpdate];
 }
 
 - (void)chackUpdate
