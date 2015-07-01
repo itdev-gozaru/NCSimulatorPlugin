@@ -108,7 +108,7 @@ static NCSimulatorPlugin *sharedPlugin;
     NSMenuItem *separatorItem = [NSMenuItem separatorItem];
     [simulator addItem:separatorItem];
 
-    checkUpdateItem = [[NSMenuItem alloc] initWithTitle:@"Check for updates..." action:@selector(chackUpdate) keyEquivalent:@""];
+    checkUpdateItem = [[NSMenuItem alloc] initWithTitle:@"Check for updates..." action:@selector(checkUpdate) keyEquivalent:@""];
     [checkUpdateItem setTarget:self];
     [simulator addItem:checkUpdateItem];
 
@@ -334,7 +334,7 @@ static NCSimulatorPlugin *sharedPlugin;
     }];
 }
 
-- (void)chackUpdate
+- (void)checkUpdate
 {
     if(queueVersion == nil)
     {
